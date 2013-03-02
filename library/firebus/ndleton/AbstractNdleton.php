@@ -10,10 +10,14 @@ namespace firebus\ndleton;
  */
 class AbstractNdleton {
 
+	/** @var integer $instanceIndex Keep track of the last instance to be returned */
+	protected static $instanceIndex = 0;
 	/** @var Array $instanceCollection */
 	protected static $instanceCollection;
 	
 	protected function __construct() {}
 	
 	abstract public static function getInstance();
+	
+	abstract protected static function incrementIndex();
 }

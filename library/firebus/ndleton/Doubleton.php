@@ -10,9 +10,6 @@ class Doubleton extends AbstractNdleton {
 
 	const INSTANCE_LIMIT = 2;
 	
-	/** @var integer $instanceIndex Keep track of the last index to be returned */
-	protected static $instanceIndex = 0;
-
 	public static function getInstance() {
 		if (count(self::$instanceCollection) < self::INSTANCE_LIMIT) {
 			self::$instanceCollection[] = new Doubleton;

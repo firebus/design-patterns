@@ -1,13 +1,14 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+namespace firebus\ndleton;
 
 /**
- * Description of ProbabilisticDoubleton
+ * Instead of alternating between each instance in order, a Probabilistic Ndleton returns an instance at "random" from its
+ * collection
  */
-class ProbabilisticDoubleton {
-	//put your code here
+class ProbabilisticDoubleton extends Doubleton {
+
+	protected static function incrementIndex() {
+		self::$instanceIndex = rand(0, count(self::$instanceCollection) - 1);
+	}
 }
