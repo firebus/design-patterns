@@ -8,19 +8,16 @@ namespace firebus\ndleton;
  */
 class Doubleton extends AbstractNdleton {
 
-	const INSTANCE_LIMIT = 2;
+	public static function getInstance($degree) {
+		self::$degree = 2;
+		return parent::getInstance();
+	}
 	
-	public static function getInstance() {
-		if (count(self::$instanceCollection) < self::INSTANCE_LIMIT) {
-			self::$instanceCollection[] = new Doubleton;
-			return self::$instanceCollection[self::$instanceIndex];
-		} else {
-			return self::$instanceCollection[self::$instanceIndex];
-		}
-		$this->incrementIndex;
+	protected static function getIndex() {
+		return self::$instanceIndex;
 	}
 	
 	protected static function incrementIndex() {
-		self::$instanceIndex = (self::$instanceIndex + 1) % self::INSTANCE_LIMIT;
+		self::$instanceIndex = (self::$instanceIndex + 1) % self::$degree;
 	}
 }

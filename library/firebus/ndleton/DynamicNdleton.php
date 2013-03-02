@@ -7,14 +7,13 @@ namespace firebus\ndleton;
  */
 class DynamicNdleton extends AbstractNdleton {
 
-	public static function getInstance($n) {
-		if (count(self::$instanceCollection) < $n) {
-			self::$instanceCollection[] = new Doubleton;
-			return self::$instanceCollection[self::$instanceIndex % n];
-		} else {
-			return self::$instanceCollection[self::$instanceIndex % n];
-		}
-		$this->incrementIndex;
+	public static function getInstance($degree) {
+		self::$degree = $degree;
+		return parent::getInstance();
+	}
+	
+	protected static function getIndex() {
+		return self::$instanceIndex % self::$degree;
 	}
 	
 	protected static function incrementIndex() {
