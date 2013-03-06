@@ -7,7 +7,6 @@ namespace firebus\ndleton;
  * collection
  */
 class ProbabilisticDoubleton extends Doubleton {
-
 	protected static function incrementIndex() {
 		self::$instanceIndex = mt_rand(0, count(self::$instanceCollection) - 1);
 	}

@@ -8,25 +8,26 @@ namespace firebus\ndleton;
  * 
  * AbstractNdleton is an example generic base class that concrete Ndletons can extend
  */
-class AbstractNdleton {
+abstract class AbstractNdleton {
 
 	/** @var integer $degree How many instances to create. Each concrete Ndleton must define this */
 	protected static $degree;
 	/** @var integer $instanceIndex Keep track of the last instance to be returned */
 	protected static $instanceIndex = 0;
 	/** @var Array $instanceCollection */
-	protected static $instanceCollection;
+	protected static $instanceCollection = array();
 	
 	protected function __construct() {}
 	
-	public static function getInstance() {
-		if (count(self::$instanceCollection) < self::$degree) {
-			self::$instanceCollection[] = new INTROSPECTION;
-			return self::$instanceCollection[self::getIndex()];
-		} else {
-			return self::$instanceCollection[self::getIndex()];
+	public static function getInstance($className) {
+		$className = '\firebus\ndleton\\' . $className;
+		if (count(self::$instanceCollection) < static::$degree) {
+			error_log('making a new instance');
+			self::$instanceCollection[] = new $className;
 		}
-		$this->incrementIndex;
+		$instance = self::$instanceCollection[static::getIndex()];
+		static::incrementIndex();
+		return $instance;
 	}
 	
 	abstract protected static function getIndex();

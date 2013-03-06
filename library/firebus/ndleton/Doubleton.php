@@ -8,9 +8,9 @@ namespace firebus\ndleton;
  */
 class Doubleton extends AbstractNdleton {
 
-	public static function getInstance($degree) {
+	public static function getInstance() {
 		self::$degree = 2;
-		return parent::getInstance();
+		return parent::getInstance('Doubleton');
 	}
 	
 	protected static function getIndex() {
