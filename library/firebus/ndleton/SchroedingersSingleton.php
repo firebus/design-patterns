@@ -9,7 +9,7 @@ class SchroedingersSingleton extends SchroedingersNdleton {
 	
 	public static function getInstance() {
 		self::$degree = 1;
-		return parent::getInstance();
+		return parent::getInstance('SchroedingersSingleton');
 	}
 	
 	protected static function getIndex() {

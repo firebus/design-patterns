@@ -3,13 +3,14 @@
 namespace firebus\ndleton;
 
 /**
- * A Dynamic Ndleton can simulate any specific Ndleton, so that each caller can choose how many instances are in its collection
+ * A Dynamic Ndleton behaves like any Ndleton on a per-caller basis, i.e. each caller can specify how many instances are in its
+ * pool
  */
 class DynamicNdleton extends AbstractNdleton {
 
 	public static function getInstance($degree) {
 		self::$degree = $degree;
-		return parent::getInstance();
+		return parent::getInstance('DynamicNdleton');
 	}
 	
 	protected static function getIndex() {

@@ -10,7 +10,8 @@ namespace firebus\ndleton;
  * clearly absurd, thus this Ndleton is excellent for use cases that require a refutation of the Copenhagen Interpretation.
  * 
  * The details of Schroedinger's experiment are ambiguous for lengths of time shorter or longer than an hour. We'll assume that 
- * the machine of death contains a single atom, of a substance that undergoes exponential decay, with a half-life of one hour.
+ * the machine of death contains a single atom, of a substance that undergoes exponential decay, with a half-life set by a class
+ * constant.
  * 
  * http://en.wikipedia.org/wiki/Schr%C3%B6dinger%27s_cat
  * One can even set up quite ridiculous cases. A cat is penned up in a steel chamber, along with the following device (which must
@@ -26,21 +27,21 @@ namespace firebus\ndleton;
  */
 abstract class SchroedingersNdleton extends AbstractNdleton {
 	
-	const HALF_LIFE = 3600; // in seconds
+	const HALF_LIFE = 5; // in seconds
 	const ATOM_COUNT = 1;
 
 	/** @var float $startTime A microtimestamp */
 	protected static $startTime = null;
 	protected static $isDead = false;
 	
-	public function getInstance() {
+	public static function getInstance($className) {
 		if (is_null(self::$startTime)) {
 			self::$startTime = microtime(true);
 		}
-		if ($isDead || self::openTheBox()) {
+		if (self::$isDead || self::openTheBox()) {
 			return null;
 		} else {
-			return parent::getInstance();
+			return parent::getInstance($className);
 		}
 	}
 
@@ -50,8 +51,9 @@ abstract class SchroedingersNdleton extends AbstractNdleton {
 	 */
 	protected function openTheBox() {
 		$now = microtime(true);
-		$diff = self::$now - $startTime;
-		$probability = ATOM_COUNT * pow(0.5, $diff/HALF_LIFE);
+		$diff = $now - self::$startTime;
+		$probability = self::ATOM_COUNT * pow(0.5, $diff/self::HALF_LIFE);
+		// TODO: This needs to vary between 0 and ATOM_COUNT
 		$random = mt_rand() / mt_getrandmax();
 		if ($probability < $random) {
 			self::$isDead = true;
