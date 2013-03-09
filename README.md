@@ -36,3 +36,12 @@ We've seen the Ndleton pattern used in these situations:
 * SchroedingersSingleton simulates the famous Schroedinger's cat experiment. The instance will eventually die. The probability of
   death increases over time, per the formula for exponential decay. There's no way of knowing if the instance is alive or dead
   without opening the box (i.e. calling getInstance()).
+
+## References
+
+I am not the first to explore this underutilized design pattern
+
+* http://www.codeproject.com/Articles/10335/Starting-from-the-Singleton-Design-Pattern-to-Expl
+* http://stackoverflow.com/questions/3026282/doubleton-pattern-implementation
+* http://stackoverflow.com/questions/3046940/doubleton-pattern-in-c
+* http://www.codingtiger.com/questions/c++/Doubleton-pattern-in-C++.html
