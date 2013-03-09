@@ -27,7 +27,7 @@ namespace firebus\ndleton;
  */
 abstract class SchroedingersNdleton extends AbstractNdleton {
 	
-	const HALF_LIFE = 5; // in seconds
+	protected static $halfLife = 3600; // One hour by default
 	const ATOM_COUNT = 1;
 
 	/** @var float $startTime A microtimestamp */
@@ -49,10 +49,10 @@ abstract class SchroedingersNdleton extends AbstractNdleton {
 	 * Calculate the probabilty of decay since $startTime
 	 * http://en.wikipedia.org/wiki/Half-life#Formulas_for_half-life_in_exponential_decay
 	 */
-	protected function openTheBox() {
+	protected static function openTheBox() {
 		$now = microtime(true);
 		$diff = $now - self::$startTime;
-		$probability = self::ATOM_COUNT * pow(0.5, $diff/self::HALF_LIFE);
+		$probability = self::ATOM_COUNT * pow(0.5, $diff / self::$halfLife);
 		// TODO: This needs to vary between 0 and ATOM_COUNT
 		$random = mt_rand() / mt_getrandmax();
 		if ($probability < $random) {
@@ -61,5 +61,9 @@ abstract class SchroedingersNdleton extends AbstractNdleton {
 		} else {
 			return false;
 		}
+	}
+	
+	public static function setHalfLife($seconds) {
+		self::$halfLife = $seconds;
 	}
 }
