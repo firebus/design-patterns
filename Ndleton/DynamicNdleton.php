@@ -1,6 +1,6 @@
 <?php
 
-namespace firebus\ndleton;
+namespace Firebus\DesignPatterns\Ndleton;
 
 /**
  * A Dynamic Ndleton behaves like any Ndleton on a per-caller basis, i.e. each caller can specify how many instances are in its

@@ -1,6 +1,6 @@
 <?php
 
-namespace firebus\ndleton;
+namespace Firebus\DesignPatterns\Ndleton;
 
 /**
  * Instead of alternating between each instance in order, a Probabilistic Ndleton returns an instance at "random" from its

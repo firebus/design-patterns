@@ -1,6 +1,6 @@
 <?php
 
-namespace firebus\ndleton;
+namespace Firebus\DesignPatterns\Ndleton;
 
 /**
  * A concrete implementation of SchroedingersNdleton

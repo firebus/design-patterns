@@ -1,6 +1,6 @@
 <?php
 
-namespace firebus\ndleton;
+namespace Firebus\DesignPatterns\Ndleton;
 
 /**
  * An Ndleton is an extension of the Singleton design pattern which supports singleton-like use cases that require more than one
@@ -20,7 +20,7 @@ abstract class AbstractNdleton {
 	protected function __construct() {}
 	
 	public static function getInstance($className) {
-		$className = '\firebus\ndleton\\' . $className;
+		$className = __NAMESPACE__ . "\\$className";
 		if (count(self::$instanceCollection) < static::$degree) {
 			error_log('making a new instance');
 			self::$instanceCollection[] = new $className;

@@ -1,6 +1,6 @@
 <?php
 
-namespace firebus\ndleton;
+namespace Firebus\DesignPatterns\Ndleton;
 
 /**
  * The Doubleton is probably the most useful of the Ndleton patterns.

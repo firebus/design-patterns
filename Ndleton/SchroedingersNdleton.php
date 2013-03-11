@@ -1,6 +1,6 @@
 <?php
 
-namespace firebus\ndleton;
+namespace Firebus\DesignPatterns\Ndleton;
 
 /**
  * In a Schroedinger's Ndleton getInstance() will either return an instance or a null.
